@@ -9,5 +9,12 @@ check: all
 	./jupiter |grep "Hello from .*jupiter!"
 	@echo "*** ALL TESTS PASSED ***"
 
-.PHONY: all clean check
+install:
+	# MacOS prefers /usr/local
+	cp jupiter /usr/local/bin
+# not allowed on MacOS?
+#	chown root:root /usr/bin/jupiter
+	chmod +x /usr/local/bin/jupiter
+
+.PHONY: all clean check install
 
