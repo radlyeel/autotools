@@ -15,7 +15,8 @@ $(distdir).tar.gz: $(distdir)
 $(distdir): FORCE
 	mkdir -p $(distdir)/src
 	cp Makefile $(distdir)
-	cp src/Makefile src/main.c $(distdir)/src
+	cp src/Makefile $(distdir)/src
+	cp src/main.c $(distdir)/src
 
 distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -
