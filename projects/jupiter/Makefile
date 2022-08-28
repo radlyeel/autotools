@@ -12,10 +12,19 @@ $(distdir).tar.gz: $(distdir)
 	tar chof - $(distdir) | gzip -9 -c > $@
 	rm -rf $(distdir)
 
-$(distdir):
+	rm $(distdir).tar.gz >/dev/null 2>&1
+	rm -rf $(distdir)
+
+$(distdir): FORCE
 	mkdir -p $(distdir)/src
 	cp Makefile $(distdir)
 	cp src/Makefile src/main.c $(distdir)/src
+	cp src/main.c $(distdir)/src
 
-.PHONY: all clean dist
+FORCE:
+	-rm $(distdir).tar.gz >/dev/null 2>&1
+	rm -rf $(distdir)
+
+
+.PHONY: FORCE all clean dist
 
